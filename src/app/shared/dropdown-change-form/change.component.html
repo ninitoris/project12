@@ -1,0 +1,44 @@
+<form style="display: inline-block; margin-right: 2px;">
+    <div class="row">
+        <div class="col">
+            <div ngbDropdown class="d-inline-block">
+                <button class="btn btn-outline-primary btn-sm" id="dropdownForm1" ngbDropdownToggle>
+                    Edit
+                </button>
+                <div ngbDropdownMenu aria-labelledby="dropdownForm1">
+                    <form class="px-2 py-2" [formGroup]="formChanger" [style.width]="'250px'">
+                        <div class="form-group">
+                            <label for="DropdownName">Имя</label>
+                            <input type="text" class="form-control" id="DropdownName" formControlName="name"
+                                placeholder="Введите имя" requireds />
+                            <div class="checkIfEmpty"
+                                *ngIf="(formChanger.get('name').touched && formChanger.get('name').invalid)">
+                                <span class="badge badge-danger">Тоже придется заполнить</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="DropdownSurname">Фамилия</label>
+                            <input type="text" class="form-control" id="DropdownSurname" formControlName="surname"
+                                placeholder="Введите фамилию" required />
+                            <div class="checkIfEmpty"
+                                *ngIf="(formChanger.get('surname').touched && formChanger.get('surname').invalid)">
+                                <span class="badge badge-danger">Тоже придется заполнить</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="DropdownType">Профессия</label>
+                            <select class="custom-select" id="DropdownType" formControlName="type">
+                                <option [ngValue]="myWorkerType.programmer">Программист</option>
+                                <option [ngValue]="myWorkerType.designer">Дизайнер</option>
+                                <option [ngValue]="myWorkerType.copywriter">Рекламщик</option>
+                                <option [ngValue]="myWorkerType.manager">Менеджер</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary" (click)="change_worker()"
+                            [disabled]="formChanger.invalid">Сохранить</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

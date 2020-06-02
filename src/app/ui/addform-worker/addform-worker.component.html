@@ -1,0 +1,39 @@
+<form [formGroup]="form_workers">
+  <div class="row mb-3">
+    <div class="col-12">
+      <h5>Добавить сотрудника</h5>
+    </div>
+    <div class="col">
+      <app-table-workers></app-table-workers>
+      <input type="text" class="form-control" placeholder="Имя" formControlName="name" />
+      <div class="ifNameIsEmpty" *ngIf="(form_workers.get('name').touched && form_workers.get('name').invalid)">
+        <span class="badge badge-danger">Нужно заполнить</span>
+      </div>
+    </div>
+
+    <div class="col">
+      <input type="text" class="form-control" placeholder="Фамилия" formControlName="surname">
+
+      <div class="ifSurnameIsEmpty"
+        *ngIf="(form_workers.get('surname').touched && form_workers.get('surname').invalid)">
+        <span class="badge badge-danger">Нужно заполнить</span>
+      </div>
+    </div>
+
+    <div class="col">
+      <select class="custom-select" [(ngModel)]="type" [ngModelOptions]="{standalone: true}">
+        <option [ngValue]="myWorkerType.programmer">Программист</option>
+        <option [ngValue]="myWorkerType.designer">Дизайнер</option>
+        <option [ngValue]="myWorkerType.copywriter">Рекламщик</option>
+        <option [ngValue]="myWorkerType.manager">Менеджер</option>
+      </select>
+    </div>
+
+    <div class="col-1">
+      <button class="btn btn-primary btn-md" (click)="onAddWorker()" [disabled]="form_workers.invalid">
+        Add
+      </button>
+
+    </div>
+  </div>
+</form>
